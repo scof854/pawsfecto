@@ -20,7 +20,12 @@ Backend больше не требует Redis/BullMQ и подходит для
 
 ```text
 backend/
-├── api/[...path].ts            # serverless entrypoint для Vercel
+├── api/                        # Vercel Serverless Functions
+│   ├── health.ts               # GET /api/health
+│   ├── leads.ts                # POST /api/leads
+│   ├── leads/[id].ts           # GET /api/leads/:id
+│   └── telegram/webhook.ts     # POST /api/telegram/webhook
+├── lib/                        # общие утилиты для serverless endpoints
 ├── prisma/schema.prisma        # модель Lead
 ├── src/
 │   ├── bootstrap.ts            # общая настройка Nest-приложения

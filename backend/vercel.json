@@ -3,7 +3,16 @@
   "buildCommand": "npm run vercel-build",
   "installCommand": "npm ci",
   "functions": {
-    "api/[...path].ts": {
+    "api/health.ts": {
+      "maxDuration": 10
+    },
+    "api/leads.ts": {
+      "maxDuration": 10
+    },
+    "api/leads/[id].ts": {
+      "maxDuration": 10
+    },
+    "api/telegram/webhook.ts": {
       "maxDuration": 10
     }
   },

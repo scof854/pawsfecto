@@ -80,3 +80,9 @@ Thumbs.db
 
 # Local Devin config
 .devin/config.local.json
+
+# compiled serverless artifacts
+backend/api/**/*.js
+backend/api/**/*.js.map
+backend/lib/**/*.js
+backend/lib/**/*.js.map
