@@ -1,6 +1,6 @@
-import { handleCors, json, methodNotAllowed } from '../../lib/http';
+const { handleCors, json, methodNotAllowed } = require('../../lib/http');
 
-export default function handler(req: any, res: any) {
+module.exports = function handler(req, res) {
   if (handleCors(req, res)) return;
   if (req.method !== 'POST') return methodNotAllowed(res, ['POST', 'OPTIONS']);
 
@@ -9,4 +9,4 @@ export default function handler(req: any, res: any) {
   if (expected && actual !== expected) return json(res, 401, { message: 'Unauthorized' });
 
   return json(res, 200, { ok: true });
-}
+};

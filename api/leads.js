@@ -1,15 +1,9 @@
-import { prisma } from '../lib/prisma';
-import { sendLeadToTelegram } from '../lib/telegram';
-import {
-  handleCors,
-  getRequestBody,
-  getRequestIp,
-  json,
-  methodNotAllowed,
-} from '../lib/http';
-import { validateLeadPayload } from '../lib/validation';
+const { prisma } = require('../lib/prisma');
+const { sendLeadToTelegram } = require('../lib/telegram');
+const { handleCors, getRequestBody, getRequestIp, json, methodNotAllowed } = require('../lib/http');
+const { validateLeadPayload } = require('../lib/validation');
 
-export default async function handler(req: any, res: any) {
+module.exports = async function handler(req, res) {
   if (handleCors(req, res)) return;
   if (req.method !== 'POST') return methodNotAllowed(res, ['POST', 'OPTIONS']);
 
@@ -24,7 +18,7 @@ export default async function handler(req: any, res: any) {
       message: parsed.data.message,
       source: parsed.data.source,
       ip: getRequestIp(req),
-      userAgent: String(req.headers['user-agent'] ?? '').slice(0, 500) || undefined,
+      userAgent: String(req.headers['user-agent'] || '').slice(0, 500) || undefined,
     },
   });
 
@@ -56,4 +50,4 @@ export default async function handler(req: any, res: any) {
       warning: 'Lead saved, but Telegram delivery failed',
     });
   }
-}
+};

@@ -3,7 +3,7 @@
   "buildCommand": "npm run vercel-build",
   "installCommand": "npm ci",
   "functions": {
-    "api/**/*.ts": {
+    "api/**/*.js": {
       "maxDuration": 10
     }
   },

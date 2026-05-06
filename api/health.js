@@ -1,6 +1,6 @@
-import { handleCors, json, methodNotAllowed } from '../lib/http';
+const { handleCors, json, methodNotAllowed } = require('../lib/http');
 
-export default function handler(req: any, res: any) {
+module.exports = function handler(req, res) {
   if (handleCors(req, res)) return;
   if (req.method !== 'GET') return methodNotAllowed(res, ['GET', 'OPTIONS']);
 
@@ -9,4 +9,4 @@ export default function handler(req: any, res: any) {
     uptime: process.uptime(),
     timestamp: new Date().toISOString(),
   });
-}
+};
